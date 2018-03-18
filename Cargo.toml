@@ -1,0 +1,8 @@
+[package]
+name = "mvmusic"
+version = "0.1.0"
+authors = ["Kaidan <fishstacks@protonmail.com>"]
+
+[dependencies]
+regex = "^0.2.10"
+structopt = "^0.2.5"
