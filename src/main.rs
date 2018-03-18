@@ -38,8 +38,8 @@ fn rename_files(src_dir: &PathBuf, out_dir: &PathBuf, verbose: bool) {
             match fs::copy(&originalfile, &newfile) {
                 Ok(_) => println!("Renamed {}", filename),
                 Err(error) => panic!(
-                    "Failed to copy {} to {:?} with error {:?}",
-                    filename, newfile, error
+                    "Failed to copy {:?} to {:?} with error {:?}",
+                    originalfile, newfile, error
                 ),
             }
         } else {
