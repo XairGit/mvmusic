@@ -9,7 +9,7 @@ use regex::Regex;
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "rnmusic", about = "A small utility to strip youtube URLs from filenames")]
+#[structopt(name = "mvmusic", about = "A small utility to strip youtube URLs from filenames")]
 struct Opt {
     /// Path containing files to be renamed
     #[structopt(short = "s", long = "source", parse(from_os_str))]
