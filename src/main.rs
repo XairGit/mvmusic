@@ -32,6 +32,11 @@ fn rename_files(src_dir: &PathBuf, out_dir: &PathBuf, verbose: bool) {
             .file_name()
             .into_string()
             .expect("Failed to convert filename to string");
+        // regex replace method will return original filename if no match is found
+        // which results in accidental copying of files
+        if !re.is_match(&filename) {
+            continue;
+        }
         let newfile = Path::new(&out_dir).join(re.replace(&filename, ".mp3").as_ref());
         let originalfile = Path::new(&src_dir).join(&filename);
         if verbose {
