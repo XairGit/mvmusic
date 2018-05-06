@@ -14,7 +14,7 @@ struct Opt {
     /// Path containing files to be renamed
     #[structopt(short = "s", long = "source", parse(from_os_str))]
     source: PathBuf,
-    /// Output directory, renamed files will be placed here
+    /// Optional output directory, if specified renamed files will be placed here
     #[structopt(short = "o", long = "output", parse(from_os_str))]
     output: Option<PathBuf>,
     /// Verbose output
