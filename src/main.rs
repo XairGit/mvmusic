@@ -62,18 +62,24 @@ fn main() {
         let originalpath = Path::new(&args.source).join(&filename);
         match fs::copy(&originalpath, &newpath) {
             Ok(_) => info!("Created {}", &newfilename),
-            Err(error) => error!(
-                "Failed to copy {:?} to {:?} with error {:?}",
-                originalpath, newpath, error
-            ),
+            Err(error) => {
+                error!(
+                    "Failed to copy {:?} to {:?} with error {:?}",
+                    originalpath, newpath, error
+                );
+                panic!("Failed to copy file");
+            }
         }
         if args.delete {
             match fs::remove_file(&originalpath) {
                 Ok(_) => info!("Removed {}", &filename),
-                Err(error) => error!(
-                    "Failed to remove {:?} from {:?} with error {:?}",
-                    filename, originalpath, error
-                ),
+                Err(error) => {
+                    error!(
+                        "Failed to remove {:?} from {:?} with error {:?}",
+                        filename, originalpath, error
+                    );
+                    panic!("Failed to remove file");
+                }
             }
         }
     }
