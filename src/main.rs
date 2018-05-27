@@ -56,14 +56,24 @@ fn main() {
         if !re.is_match(&filename) {
             continue;
         }
-        let newfile = Path::new(&output_dir).join(re.replace(&filename, ".mp3").as_ref());
-        let originalfile = Path::new(&args.source).join(&filename);
-        match fs::copy(&originalfile, &newfile) {
-            Ok(_) => info!("Renamed {}", filename),
-            Err(error) => panic!(
+        let newfilename = re.replace(&filename, ".mp3");
+        let newpath = Path::new(&output_dir).join(newfilename.as_ref());
+        let originalpath = Path::new(&args.source).join(&filename);
+        match fs::copy(&originalpath, &newpath) {
+            Ok(_) => info!("Created {}", &newfilename),
+            Err(error) => error!(
                 "Failed to copy {:?} to {:?} with error {:?}",
-                originalfile, newfile, error
+                originalpath, newpath, error
             ),
+        }
+        if args.delete {
+            match fs::remove_file(&originalpath) {
+                Ok(_) => info!("Removed {}", &filename),
+                Err(error) => error!(
+                    "Failed to remove {:?} from {:?} with error {:?}",
+                    filename, originalpath, error
+                    ),
+            }
         }
     }
 }
