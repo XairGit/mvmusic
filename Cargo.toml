@@ -4,5 +4,7 @@ version = "0.1.0"
 authors = ["Kaidan <fishstacks@protonmail.com>"]
 
 [dependencies]
-regex = "^0.2.10"
-structopt = "^0.2.5"
+regex = "0.2.10"
+structopt = "0.2.5"
+log = "0.4.1"
+simplelog = "0.5.0"
