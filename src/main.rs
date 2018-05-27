@@ -13,7 +13,9 @@ use std::path::PathBuf;
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "mvmusic", about = "A small utility to copy/move files containing appended youtube URLs")]
+#[structopt(
+    name = "mvmusic", about = "A small utility to copy/move files containing appended youtube URLs"
+)]
 struct Opt {
     /// Path containing files to be renamed
     #[structopt(short = "s", long = "source", parse(from_os_str))]
@@ -72,7 +74,7 @@ fn main() {
                 Err(error) => error!(
                     "Failed to remove {:?} from {:?} with error {:?}",
                     filename, originalpath, error
-                    ),
+                ),
             }
         }
     }
