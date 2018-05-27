@@ -38,6 +38,9 @@ fn main() {
         TermLogger::init(LevelFilter::Info, Config::default())
             .expect("Failed to initialize logger");
     }
+    // Rust currently doesn't support partial moves across closures
+    // so for now this will stay strictly evaluated
+    // in future it would be better to use unwrap_or_else() here
     let output_dir = args.output.unwrap_or(args.source.clone());
     let re = Regex::new(r"(?i)-([a-z0-9-_]+)\.mp3").expect("Failed to compile regex");
     let file_entries = fs::read_dir(&args.source).expect("Failed to read directory");
@@ -53,7 +56,6 @@ fn main() {
         if !re.is_match(&filename) {
             continue;
         }
-
         let newfile = Path::new(&output_dir).join(re.replace(&filename, ".mp3").as_ref());
         let originalfile = Path::new(&args.source).join(&filename);
         match fs::copy(&originalfile, &newfile) {
