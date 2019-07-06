@@ -1,6 +1,5 @@
-#[macro_use]
-extern crate structopt;
 extern crate regex;
+extern crate structopt;
 #[macro_use]
 extern crate log;
 extern crate simplelog;
@@ -13,7 +12,8 @@ use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 #[structopt(
-    name = "mvmusic", about = "A small utility to copy/move files containing appended youtube URLs"
+    name = "mvmusic",
+    about = "A small utility to copy/move files containing appended youtube URLs"
 )]
 struct Opt {
     /// Path containing files to be renamed
