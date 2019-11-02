@@ -44,7 +44,7 @@ fn main() {
     // in future it would be better to use unwrap_or_else() here
     //
     // FIXME: This is now supported by Rust but I can't make the borrow checker happy
-    let output_dir = args.output.unwrap_or_else(|| args.source.clone());
+    let output_dir = args.output.unwrap_or(args.source.clone());
     let re = Regex::new(r"(?i)-([a-z0-9-_]+)\.mp3$").expect("Failed to compile regex");
     let file_entries = fs::read_dir(&args.source).expect("Failed to read source directory");
 
