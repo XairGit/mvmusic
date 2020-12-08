@@ -5,7 +5,7 @@ extern crate log;
 extern crate simplelog;
 
 use regex::Regex;
-use simplelog::{Config, LevelFilter, TermLogger};
+use simplelog::{TerminalMode, Config, LevelFilter, TermLogger};
 use std::fs;
 use std::path::{Path, PathBuf};
 use structopt::StructOpt;
@@ -33,10 +33,10 @@ struct Opt {
 fn main() {
     let args = Opt::from_args();
     if args.quiet {
-        TermLogger::init(LevelFilter::Warn, Config::default())
+        TermLogger::init(LevelFilter::Warn, Config::default(), TerminalMode::Mixed)
             .expect("Failed to initialize logger");
     } else {
-        TermLogger::init(LevelFilter::Info, Config::default())
+        TermLogger::init(LevelFilter::Info, Config::default(), TerminalMode::Mixed)
             .expect("Failed to initialize logger");
     }
     let output_dir = args.output.unwrap_or(args.source.clone());
